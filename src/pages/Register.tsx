@@ -1,24 +1,30 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { Checkbox } from '@/components/ui/checkbox';
-import { hotelInfo } from '@/data/mockData';
-import { useToast } from '@/hooks/use-toast';
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { hotelInfo } from "@/data/mockData";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    agreeTerms: false
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+    agreeTerms: false,
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,12 +36,20 @@ const Register = () => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      toast({ title: 'Error', description: 'Passwords do not match', variant: 'destructive' });
+      toast({
+        title: "Error",
+        description: "Passwords do not match",
+        variant: "destructive",
+      });
       return;
     }
 
     if (!formData.agreeTerms) {
-      toast({ title: 'Error', description: 'Please agree to the terms and conditions', variant: 'destructive' });
+      toast({
+        title: "Error",
+        description: "Please agree to the terms and conditions",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -43,14 +57,20 @@ const Register = () => {
 
     // Simulate registration
     setTimeout(() => {
-      toast({ title: 'Account created!', description: 'Please check your email to verify your account.' });
-      navigate('/login');
+      toast({
+        title: "Account created!",
+        description: "Please check your email to verify your account.",
+      });
+      navigate("/login");
       setIsLoading(false);
     }, 1000);
   };
 
   const handleGoogleRegister = () => {
-    toast({ title: 'Google Sign Up', description: 'Google authentication requires Cloud integration.' });
+    toast({
+      title: "Google Sign Up",
+      description: "Google authentication requires Cloud integration.",
+    });
   };
 
   return (
@@ -59,18 +79,26 @@ const Register = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center justify-center gap-2 mb-8">
           <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-serif font-bold text-2xl">G</span>
+            <span className="text-primary-foreground font-serif font-bold text-2xl">
+              G
+            </span>
           </div>
           <div>
-            <h1 className="font-serif font-bold text-xl text-foreground">{hotelInfo.name}</h1>
+            <h1 className="font-serif font-bold text-xl text-foreground">
+              {hotelInfo.name}
+            </h1>
             <p className="text-xs text-muted-foreground">{hotelInfo.tagline}</p>
           </div>
         </Link>
 
         <Card>
           <CardHeader className="text-center">
-            <CardTitle className="font-serif text-2xl">Create Account</CardTitle>
-            <CardDescription>Sign up to start booking your perfect stay</CardDescription>
+            <CardTitle className="font-serif text-2xl">
+              Create Account
+            </CardTitle>
+            <CardDescription>
+              Sign up to start booking your perfect stay
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleRegister} className="space-y-4">
@@ -142,20 +170,27 @@ const Register = () => {
                 <Checkbox
                   id="agreeTerms"
                   checked={formData.agreeTerms}
-                  onCheckedChange={(checked) => 
+                  onCheckedChange={(checked) =>
                     setFormData({ ...formData, agreeTerms: checked as boolean })
                   }
                 />
-                <Label htmlFor="agreeTerms" className="text-sm text-muted-foreground leading-tight">
-                  I agree to the{' '}
-                  <a href="#" className="text-primary hover:underline">Terms of Service</a>
-                  {' '}and{' '}
-                  <a href="#" className="text-primary hover:underline">Privacy Policy</a>
+                <Label
+                  htmlFor="agreeTerms"
+                  className="text-sm text-muted-foreground leading-tight"
+                >
+                  I agree to the{" "}
+                  <a href="#" className="text-primary hover:underline">
+                    Terms of Service
+                  </a>{" "}
+                  and{" "}
+                  <a href="#" className="text-primary hover:underline">
+                    Privacy Policy
+                  </a>
                 </Label>
               </div>
 
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Creating account...' : 'Create Account'}
+                {isLoading ? "Creating account..." : "Create Account"}
               </Button>
             </form>
 
@@ -165,7 +200,9 @@ const Register = () => {
                   <Separator />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
+                  <span className="bg-card px-2 text-muted-foreground">
+                    Or continue with
+                  </span>
                 </div>
               </div>
 
@@ -197,8 +234,11 @@ const Register = () => {
             </div>
 
             <p className="text-center text-sm text-muted-foreground mt-6">
-              Already have an account?{' '}
-              <Link to="/login" className="text-primary hover:underline font-medium">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="text-primary hover:underline font-medium"
+              >
                 Sign in
               </Link>
             </p>

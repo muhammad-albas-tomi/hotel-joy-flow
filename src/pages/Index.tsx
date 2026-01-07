@@ -1,11 +1,11 @@
-import Header from '@/components/homepage/Header';
-import HeroSection from '@/components/homepage/HeroSection';
-import BookingWidget from '@/components/homepage/BookingWidget';
-import RoomShowcase from '@/components/homepage/RoomShowcase';
-import FacilitiesSection from '@/components/homepage/FacilitiesSection';
-import LocationSection from '@/components/homepage/LocationSection';
-import OTASection from '@/components/homepage/OTASection';
-import Footer from '@/components/homepage/Footer';
+import BookingWidget from "@/components/homepage/BookingWidget";
+import FacilitiesSection from "@/components/homepage/FacilitiesSection";
+import Footer from "@/components/homepage/Footer";
+import Header from "@/components/homepage/Header";
+import HeroSection from "@/components/homepage/HeroSection";
+import LocationSection from "@/components/homepage/LocationSection";
+import OTASection from "@/components/homepage/OTASection";
+import RoomShowcase from "@/components/homepage/RoomShowcase";
 
 const Index = () => {
   return (

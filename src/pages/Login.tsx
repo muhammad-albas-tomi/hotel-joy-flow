@@ -1,18 +1,24 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { hotelInfo } from '@/data/mockData';
-import { useToast } from '@/hooks/use-toast';
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { hotelInfo } from "@/data/mockData";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -21,24 +27,40 @@ const Login = () => {
 
     // Simulate login - in real app, this would call Supabase auth
     setTimeout(() => {
-      if (email === 'admin@hotel.com' && password === 'admin123') {
-        toast({ title: 'Welcome back!', description: 'Redirecting to admin dashboard...' });
-        navigate('/admin');
-      } else if (email === 'staff@hotel.com' && password === 'staff123') {
-        toast({ title: 'Welcome back!', description: 'Redirecting to staff dashboard...' });
-        navigate('/admin');
+      if (email === "admin@hotel.com" && password === "admin123") {
+        toast({
+          title: "Welcome back!",
+          description: "Redirecting to admin dashboard...",
+        });
+        navigate("/admin");
+      } else if (email === "staff@hotel.com" && password === "staff123") {
+        toast({
+          title: "Welcome back!",
+          description: "Redirecting to staff dashboard...",
+        });
+        navigate("/admin");
       } else if (email && password) {
-        toast({ title: 'Welcome back!', description: 'Redirecting to your dashboard...' });
-        navigate('/dashboard');
+        toast({
+          title: "Welcome back!",
+          description: "Redirecting to your dashboard...",
+        });
+        navigate("/dashboard");
       } else {
-        toast({ title: 'Error', description: 'Please enter valid credentials', variant: 'destructive' });
+        toast({
+          title: "Error",
+          description: "Please enter valid credentials",
+          variant: "destructive",
+        });
       }
       setIsLoading(false);
     }, 1000);
   };
 
   const handleGoogleLogin = () => {
-    toast({ title: 'Google Login', description: 'Google authentication requires Cloud integration.' });
+    toast({
+      title: "Google Login",
+      description: "Google authentication requires Cloud integration.",
+    });
   };
 
   return (
@@ -47,10 +69,14 @@ const Login = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center justify-center gap-2 mb-8">
           <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-serif font-bold text-2xl">G</span>
+            <span className="text-primary-foreground font-serif font-bold text-2xl">
+              G
+            </span>
           </div>
           <div>
-            <h1 className="font-serif font-bold text-xl text-foreground">{hotelInfo.name}</h1>
+            <h1 className="font-serif font-bold text-xl text-foreground">
+              {hotelInfo.name}
+            </h1>
             <p className="text-xs text-muted-foreground">{hotelInfo.tagline}</p>
           </div>
         </Link>
@@ -58,7 +84,9 @@ const Login = () => {
         <Card>
           <CardHeader className="text-center">
             <CardTitle className="font-serif text-2xl">Welcome Back</CardTitle>
-            <CardDescription>Sign in to your account to continue</CardDescription>
+            <CardDescription>
+              Sign in to your account to continue
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-4">
@@ -76,7 +104,10 @@ const Login = () => {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>
-                  <Link to="/forgot-password" className="text-xs text-primary hover:underline">
+                  <Link
+                    to="/forgot-password"
+                    className="text-xs text-primary hover:underline"
+                  >
                     Forgot password?
                   </Link>
                 </div>
@@ -90,7 +121,7 @@ const Login = () => {
                 />
               </div>
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Signing in...' : 'Sign In'}
+                {isLoading ? "Signing in..." : "Sign In"}
               </Button>
             </form>
 
@@ -100,7 +131,9 @@ const Login = () => {
                   <Separator />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
+                  <span className="bg-card px-2 text-muted-foreground">
+                    Or continue with
+                  </span>
                 </div>
               </div>
 
@@ -132,17 +165,26 @@ const Login = () => {
             </div>
 
             <p className="text-center text-sm text-muted-foreground mt-6">
-              Don't have an account?{' '}
-              <Link to="/register" className="text-primary hover:underline font-medium">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="text-primary hover:underline font-medium"
+              >
                 Sign up
               </Link>
             </p>
 
             {/* Demo credentials */}
             <div className="mt-6 p-4 bg-muted rounded-lg">
-              <p className="text-xs text-muted-foreground mb-2 font-medium">Demo Credentials:</p>
-              <p className="text-xs text-muted-foreground">Admin: admin@hotel.com / admin123</p>
-              <p className="text-xs text-muted-foreground">Staff: staff@hotel.com / staff123</p>
+              <p className="text-xs text-muted-foreground mb-2 font-medium">
+                Demo Credentials:
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Admin: admin@hotel.com / admin123
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Staff: staff@hotel.com / staff123
+              </p>
             </div>
           </CardContent>
         </Card>
