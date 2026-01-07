@@ -9,6 +9,7 @@ import AdminRooms from "./pages/admin/AdminRooms";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminUsers from "./pages/admin/AdminUsers";
 import Booking from "./pages/Booking";
+import DetailRoom from "./pages/DetailRoom";
 import ForgotPassword from "./pages/ForgotPassword";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/detail/:id" element={<DetailRoom />} />
           <Route path="/admin/rooms" element={<AdminRooms />} />
           <Route path="/admin/bookings" element={<AdminBookings />} />
           <Route path="/admin/users" element={<AdminUsers />} />
