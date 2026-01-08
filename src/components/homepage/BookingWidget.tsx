@@ -1,28 +1,42 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { CalendarIcon, Users, Search } from 'lucide-react';
-import { format, addDays } from 'date-fns';
-import { cn } from '@/lib/utils';
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import { addDays, format } from "date-fns";
+import { CalendarIcon, Search } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BookingWidget = () => {
   const navigate = useNavigate();
-  const [checkIn, setCheckIn] = useState<Date | undefined>(addDays(new Date(), 1));
-  const [checkOut, setCheckOut] = useState<Date | undefined>(addDays(new Date(), 2));
-  const [adults, setAdults] = useState('2');
-  const [children, setChildren] = useState('0');
-  const [rooms, setRooms] = useState('1');
+  const [checkIn, setCheckIn] = useState<Date | undefined>(
+    addDays(new Date(), 1)
+  );
+  const [checkOut, setCheckOut] = useState<Date | undefined>(
+    addDays(new Date(), 2)
+  );
+  const [adults, setAdults] = useState("2");
+  const [children, setChildren] = useState("0");
+  const [rooms, setRooms] = useState("1");
 
   const handleSearch = () => {
     const params = new URLSearchParams({
-      checkIn: checkIn ? format(checkIn, 'yyyy-MM-dd') : '',
-      checkOut: checkOut ? format(checkOut, 'yyyy-MM-dd') : '',
+      checkIn: checkIn ? format(checkIn, "yyyy-MM-dd") : "",
+      checkOut: checkOut ? format(checkOut, "yyyy-MM-dd") : "",
       adults,
       children,
-      rooms
+      rooms,
     });
     navigate(`/booking?${params.toString()}`);
   };
@@ -34,18 +48,20 @@ const BookingWidget = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
             {/* Check-in Date */}
             <div className="lg:col-span-1">
-              <label className="block text-sm font-medium text-muted-foreground mb-2">Check-in</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
+                Check-in
+              </label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     className={cn(
-                      'w-full justify-start text-left font-normal',
-                      !checkIn && 'text-muted-foreground'
+                      "w-full justify-start text-left font-normal",
+                      !checkIn && "text-muted-foreground"
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {checkIn ? format(checkIn, 'MMM dd, yyyy') : 'Select date'}
+                    {checkIn ? format(checkIn, "MMM dd, yyyy") : "Select date"}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
@@ -62,18 +78,22 @@ const BookingWidget = () => {
 
             {/* Check-out Date */}
             <div className="lg:col-span-1">
-              <label className="block text-sm font-medium text-muted-foreground mb-2">Check-out</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
+                Check-out
+              </label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
                     className={cn(
-                      'w-full justify-start text-left font-normal',
-                      !checkOut && 'text-muted-foreground'
+                      "w-full justify-start text-left font-normal",
+                      !checkOut && "text-muted-foreground"
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {checkOut ? format(checkOut, 'MMM dd, yyyy') : 'Select date'}
+                    {checkOut
+                      ? format(checkOut, "MMM dd, yyyy")
+                      : "Select date"}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
@@ -90,7 +110,9 @@ const BookingWidget = () => {
 
             {/* Adults */}
             <div className="lg:col-span-1">
-              <label className="block text-sm font-medium text-muted-foreground mb-2">Adults</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
+                Adults
+              </label>
               <Select value={adults} onValueChange={setAdults}>
                 <SelectTrigger>
                   <SelectValue />
@@ -98,7 +120,7 @@ const BookingWidget = () => {
                 <SelectContent>
                   {[1, 2, 3, 4, 5, 6].map((num) => (
                     <SelectItem key={num} value={num.toString()}>
-                      {num} {num === 1 ? 'Adult' : 'Adults'}
+                      {num} {num === 1 ? "Adult" : "Adults"}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -107,7 +129,9 @@ const BookingWidget = () => {
 
             {/* Children */}
             <div className="lg:col-span-1">
-              <label className="block text-sm font-medium text-muted-foreground mb-2">Children</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
+                Children
+              </label>
               <Select value={children} onValueChange={setChildren}>
                 <SelectTrigger>
                   <SelectValue />
@@ -115,7 +139,7 @@ const BookingWidget = () => {
                 <SelectContent>
                   {[0, 1, 2, 3, 4].map((num) => (
                     <SelectItem key={num} value={num.toString()}>
-                      {num} {num === 1 ? 'Child' : 'Children'}
+                      {num} {num === 1 ? "Child" : "Children"}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -124,7 +148,9 @@ const BookingWidget = () => {
 
             {/* Rooms */}
             <div className="lg:col-span-1">
-              <label className="block text-sm font-medium text-muted-foreground mb-2">Rooms</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">
+                Rooms
+              </label>
               <Select value={rooms} onValueChange={setRooms}>
                 <SelectTrigger>
                   <SelectValue />
@@ -132,7 +158,7 @@ const BookingWidget = () => {
                 <SelectContent>
                   {[1, 2, 3, 4, 5].map((num) => (
                     <SelectItem key={num} value={num.toString()}>
-                      {num} {num === 1 ? 'Room' : 'Rooms'}
+                      {num} {num === 1 ? "Room" : "Rooms"}
                     </SelectItem>
                   ))}
                 </SelectContent>

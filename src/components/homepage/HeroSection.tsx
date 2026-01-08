@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { hotelInfo } from '@/data/mockData';
+import { Button } from "@/components/ui/button";
+import { hotelInfo } from "@/data/mockData";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const heroImages = [
-  'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920',
-  'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1920',
-  'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1920',
-  'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1920'
+  "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920",
+  "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1920",
+  "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1920",
+  "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1920",
 ];
 
 const HeroSection = () => {
@@ -22,17 +22,21 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  const nextSlide = () =>
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+  const prevSlide = () =>
+    setCurrentSlide(
+      (prev) => (prev - 1 + heroImages.length) % heroImages.length
+    );
 
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden">
+    <section className="relative z-10 h-screen min-h-[600px] overflow-hidden">
       {/* Background Images */}
       {heroImages.map((image, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
+          className={`absolute  z-[1] inset-0 transition-opacity duration-1000 ${
+            index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
         >
           <img
@@ -47,27 +51,29 @@ const HeroSection = () => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-background/20 hover:bg-background/40 text-primary-foreground transition-colors"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-[99] p-2 rounded-full bg-background/20 hover:bg-background/40 text-primary-foreground transition-colors"
         aria-label="Previous slide"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-background/20 hover:bg-background/40 text-primary-foreground transition-colors"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-[99] p-2 rounded-full bg-background/20 hover:bg-background/40 text-primary-foreground transition-colors"
         aria-label="Next slide"
       >
         <ChevronRight className="h-6 w-6" />
       </button>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-32 md:bottom-40 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+      <div className="absolute bottom-32 md:bottom-40 left-1/2 -translate-x-1/2 z-[99] flex gap-2">
         {heroImages.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              index === currentSlide ? 'bg-primary-foreground w-8' : 'bg-primary-foreground/50'
+            className={`w-2 h-2 rounded-full  transition-all ${
+              index === currentSlide
+                ? "bg-primary-foreground w-8"
+                : "bg-primary-foreground/50"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -93,7 +99,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               className="text-lg px-8"
-              onClick={() => navigate('/booking')}
+              onClick={() => navigate("/booking")}
             >
               Book Your Stay
             </Button>
@@ -101,7 +107,11 @@ const HeroSection = () => {
               variant="outline"
               size="lg"
               className="text-lg px-8 bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground"
-              onClick={() => document.getElementById('rooms')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("rooms")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               Explore Rooms
             </Button>
