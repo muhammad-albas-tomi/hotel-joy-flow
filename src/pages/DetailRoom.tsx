@@ -88,12 +88,12 @@ const DetailRoom = () => {
                 </Badge>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(80px,1fr))] gap-4 ">
               {room.images.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`relative aspect-video overflow-hidden rounded-lg border-2 transition-all ${
+                  className={`relative aspect-video   overflow-hidden rounded-lg border-2 transition-all ${
                     selectedImage === index
                       ? "border-primary"
                       : "border-transparent hover:border-muted-foreground"
